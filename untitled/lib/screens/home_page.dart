@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/components/categories.dart';
 import '../components/items.dart';
+import 'package:untitled/constants.dart';
 
+import '../components/selectedIndex.dart';
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
-
   @override
   State<home> createState() => _homeState();
 }
 
 class _homeState extends State<home> {
-  int s=0;
+  int selectedIndex=0;
+  List<String> categories=["Destinations","Food","Nature"];
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
@@ -24,7 +25,40 @@ class _homeState extends State<home> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Categories(),
+            Padding(padding: const EdgeInsets.symmetric(vertical: 20),
+              child: SizedBox(
+                height: 25,
+                child: ListView.builder(
+                    itemCount: categories.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context,index){return
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            selectedIndex=index;
+                            Index.updateIndex(selectedIndex);
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(categories[index],style:TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color:selectedIndex==index ? kTextColor : kTextLightColor,
+                              ),),
+                              Container(
+                                margin:EdgeInsets.only(top: 5),
+                                height: 2,
+                                width: 30,
+                                color: selectedIndex==index?Colors.green:Colors.transparent,
+                              )
+                            ],
+                          ),
+                        ),
+                      );}),
+              ),),
             Expanded(
               flex: 1,
               child: items(),

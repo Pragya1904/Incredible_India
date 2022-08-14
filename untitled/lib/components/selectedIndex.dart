@@ -1,9 +1,9 @@
 class Index{
-  int selectedIndex=0;
-  int getIndexi(){
+ static int selectedIndex=0;
+ static int getIndexi(){
     return selectedIndex;
   }
-  void updateIndex(int index){
+ static void updateIndex(int index){
     selectedIndex=index;
   }
 }

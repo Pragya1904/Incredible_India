@@ -38,7 +38,10 @@ class _DescriptionState extends State<Description> {
             SizedBox(
               height: size.height*0.05,
             ),
-            Text(data.getData("${widget.name}"),style: kTextDescription,),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(data.getData("${widget.name}"),style: kTextDescription),
+            ),
           ],
         ),
       ),

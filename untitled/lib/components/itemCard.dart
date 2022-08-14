@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/components/categories.dart';
 import 'package:untitled/components/selectedIndex.dart';
 import 'package:untitled/screens/description_page.dart';
 import '../constants.dart';
@@ -9,7 +8,6 @@ import 'nature.dart';
 class ICard extends StatelessWidget {
 ICard(@required this.c);
   Destination destination=Destination();
-  Index index=Index();
 Food food=Food();
 Nature nature=Nature();
   final c;
@@ -21,7 +19,7 @@ Nature nature=Nature();
       children: [
         GestureDetector(
           onTap: () {
-            switch(index.getIndexi())
+            switch(Index.getIndexi())
             {
               case 0: Navigator.push(context,MaterialPageRoute(builder:(context)=> Description(buildPlaceName(),destination.getPlaceImage(c))) );
               break;
@@ -49,7 +47,7 @@ Nature nature=Nature();
   }
 
   String buildPlaceName() {
-    switch(index.getIndexi())
+    switch(Index.getIndexi())
     {
       case 0: return destination.getPlaceName(c);
       case 1: return food.getFoodName(c);
@@ -59,7 +57,7 @@ Nature nature=Nature();
   }
 
   AssetImage buildAssetImage() {
-    switch(index.getIndexi())
+    switch(Index.getIndexi())
     {
       case 0: return AssetImage(destination.getPlaceImage(c));
       case 1: return AssetImage(food.getFoodImage(c));
